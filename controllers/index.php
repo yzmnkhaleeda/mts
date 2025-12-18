@@ -1,7 +1,7 @@
 <?php
 
-$_SESSION['full_name'] = 'Nisa Kristina';
+$_SESSION['last_name'] = 'doe';
 
-$heading = 'Home';
+$heading = 'Dashboard';
 
 require base_path('views/index.view.php');

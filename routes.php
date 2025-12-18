@@ -1,13 +1,10 @@
 <?php
 
-// Home: decide what you want. I recommend redirect to /dashboard if logged in, else /login
-$router->get('/', 'controllers/index.php');
-
-$router->get('/login', 'controllers/sessions/create.php')->only('guest');
-$router->post('/sessions', 'controllers/sessions/store.php')->only('guest');
+$router->get('/', 'controllers/sessions/create.php')->only('guest');
+$router->post('/', 'controllers/sessions/store.php')->only('guest');
 $router->delete('/sessions', 'controllers/sessions/destroy.php')->only('auth');
 
-$router->get('/dashboard', 'controllers/dashboard.php')->only('auth');
+$router->get('/dashboard', 'controllers/index.php')->only('auth');
 
 $router->get('/suppliers', 'controllers/suppliers/index.php')->only('auth');
 
