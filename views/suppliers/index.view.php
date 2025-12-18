@@ -1,0 +1,25 @@
+<?php require base_path('views/partials/header.php'); ?>
+<?php require base_path('views/partials/nav.php'); ?>
+<?php require base_path('views/partials/banner.php'); ?>
+
+<main>
+    <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+        <ul>
+            <?php foreach ($suppliers as $supplier) : ?>
+                <li>
+                    <a href="/supplier?supplier_id=<?= $supplier['supplier_id'] ?>"
+                       class="text-blue-600 hover:underline">
+                        <?= htmlspecialchars($supplier['company_name'])?>
+                    </a>
+                </li>
+            <?php endforeach ?>
+        </ul>
+
+        <p class= "mt-6">
+            <a href="/suppliers/create" class="text-blue-500 hover">Register New Supplier</a>
+        </p>
+
+    </div>
+</main>
+
+<?php require base_path('views/partials/footer.php'); ?>
