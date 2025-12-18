@@ -1,13 +1,14 @@
-  <?php
+<?php
 
 namespace Core\Middleware;
 
-class Guest{
-    public function handle(){
-         if ($_SESSION['user_id'] ?? false) {   
-            header('Location: /login');
-             exit;
-         }
-}
-    
+class Guest
+{
+    public function handle(): void
+    {
+        if (isset($_SESSION['user'])) {
+            header('Location: /dashboard');
+            exit;
+        }
+    }
 }
