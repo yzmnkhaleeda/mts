@@ -5,5 +5,5 @@ use Core\Authenticator;
 $auth = new Authenticator();
 $auth->logout();
 
-header('Location: /login');
+header('Location: /');
 exit;

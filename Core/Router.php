@@ -2,10 +2,14 @@
 
 namespace Core;
 
-class Router {
-    protected $routes = [];
+use Core\Middleware\Middleware;
 
-    protected function add($method, $uri, $controller) {
+class Router
+{
+    protected array $routes = [];
+
+    protected function add(string $method, string $uri, string $controller): static
+    {
         $this->routes[] = [
             'uri' => $uri,
             'controller' => $controller,
@@ -16,58 +20,64 @@ class Router {
         return $this;
     }
 
-    public function get($uri, $controller)    
-    { 
-        return $this->add('GET', $uri, $controller); 
-    }
-    public function post($uri, $controller)   
-    { 
-        return $this->add('POST', $uri, $controller); 
-    }
-    public function delete($uri, $controller) 
-    { 
-        return $this->add('DELETE', $uri, $controller); 
-    }
-    public function patch($uri, $controller)  
-    { 
-        return $this->add('PATCH', $uri, $controller); 
-    }
-    public function put($uri, $controller)    
-    { 
-        return $this->add('PUT', $uri, $controller); 
+    public function get(string $uri, string $controller): static
+    {
+        return $this->add('GET', $uri, $controller);
     }
 
-    public function only($key){
+    public function post(string $uri, string $controller): static
+    {
+        return $this->add('POST', $uri, $controller);
+    }
+
+    public function delete(string $uri, string $controller): static
+    {
+        return $this->add('DELETE', $uri, $controller);
+    }
+
+    public function patch(string $uri, string $controller): static
+    {
+        return $this->add('PATCH', $uri, $controller);
+    }
+
+    public function put(string $uri, string $controller): static
+    {
+        return $this->add('PUT', $uri, $controller);
+    }
+
+    public function only(string $key): static
+    {
         $this->routes[array_key_last($this->routes)]['middleware'] = $key;
         return $this;
     }
 
-    public function route($uri, $method) {
+    public function route(string $uri, string $method)
+    {
         $method = strtoupper($method);
 
         foreach ($this->routes as $route) {
             if ($route['uri'] === $uri && $route['method'] === $method) {
-                //apply middleware if exists
 
-                if ($route['middleware'] === 'guest') {
+                Middleware::resolve($route['middleware']);
 
-                }
-                
-
-            if ($route['middleware'] === 'auth') {
-
-            }
-
-            // if ($route['middleware'] === 'admin') {
-            //     if (!($_SESSION['admin_id'] ?? false)) {
-            //         abort(403);
-            //     }
-            // }
-
-                return require base_path($route['controller']);
+                return require base_path('Http/controllers/' .$route[ 'controller']);
             }
         }
 
-        abort(); // 404
+        $this->abort(); // 404
+    }
+
+    public function previousURI(): string
+    {
+        return $_SERVER['HTTP_REFERER'] ?? '/';
+    }
+
+    protected function abort(int $code = 404): never
+    {
+        http_response_code($code);
+        
+        require base_path("views/{$code}.php");
+
+        die();
     }
 }

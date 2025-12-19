@@ -17,5 +17,5 @@ $router->patch('/suppliers/edit', 'suppliers/update.php')->only('auth');
 $router->get('/suppliers/create', 'suppliers/create.php')->only('auth');
 $router->post('/suppliers/create', 'suppliers/store.php')->only('auth');
 
-$router->get('/admin/users/create', 'users/create.php')->only('admin');
-$router->post('/admin/users', 'users/store.php')->only('admin');
+$router->get('/admin/users/create', 'admin/users/create.php')->only('admin');
+$router->post('/admin/users', 'admin/users/store.php')->only('admin');

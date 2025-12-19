@@ -12,7 +12,7 @@
     </div>
 
     <!-- Form -->
-    <form class="space-y-6" action="/sessions" method="POST">
+    <form class="space-y-6" action="/" method="POST">
       <?php if (!empty($errors['login'])) : ?>
         <div class="rounded-md bg-red-50 p-4">
           <p class="text-sm text-red-800"><?= htmlspecialchars($errors['login']) ?></p>
