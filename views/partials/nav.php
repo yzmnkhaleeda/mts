@@ -27,6 +27,15 @@
                                     hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                                 Contact
                             </a>
+
+                            <?php if (($_SESSION['user']['role'] ?? '') === 'admin') : ?>
+                            <a href="/admin/users/create"
+                            class="<?= urlIs('/admin/users/create') ? 'bg-gray-900 text-white' : 'text-gray-300' ?>
+                                    hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                                Staff Registration
+                            </a>
+                            <?php endif; ?>
+                            
                         </div>
                     </div>
                 </div>
@@ -126,6 +135,9 @@
                 <a href="/suppliers" class="<?= urlIs('/suppliers') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Supplier List</a>
                 <a href="/about" class="<?= urlIs('/about') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
                 <a href="/contact" class="<?= urlIs('/contact') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+                <?php if (($_SESSION['user']['role'] ?? '') === 'admin') : ?>
+                <a href="/admin/users/create" class="<?= urlIs('/admin/users/create') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Staff Registration</a>
+                <?php endif; ?>
             </div>
                 <div class="-mr-2 flex md:hidden">
                         <!-- Mobile menu button -->

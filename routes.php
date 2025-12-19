@@ -6,6 +6,9 @@ $router->delete('/sessions', 'sessions/destroy.php')->only('auth');
 
 $router->get('/dashboard', 'index.php')->only('auth');
 
+$router->get('/about', 'about.php')->only('auth');
+$router->get('/contact', 'contact.php')->only('auth');
+
 $router->get('/suppliers', 'suppliers/index.php')->only('auth');
 
 $router->get('/supplier', 'suppliers/show.php')->only('auth');
