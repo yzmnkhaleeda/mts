@@ -20,11 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors['email'] = 'Valid email address is required';
     }
 
-    if (! Validator::string($_POST['username'] ?? '', 2, 50)) {
+    if (! Validator::string($_POST['username'] ?? '', 2, 15)) {
         $errors['username'] = 'Username of no more than 50 characters is required';
     }
 
-    if (! Validator::string($_POST['password'] ?? '', 6, 255)) {
+    if (! Validator::string($_POST['password'] ?? '', 6, 30)) {
         $errors['password'] = 'Password of at least 6 characters is required';
     }
 
