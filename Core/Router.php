@@ -58,6 +58,10 @@ class Router
         foreach ($this->routes as $route) {
             if ($route['uri'] === $uri && $route['method'] === $method) {
 
+                // Debug: uncomment to see what's happening
+                // echo "Route matched: {$uri}, Middleware: {$route['middleware']}<br>";
+                // var_dump($_SESSION);
+                
                 Middleware::resolve($route['middleware']);
 
                 return require base_path('Http/controllers/' .$route[ 'controller']);
@@ -65,11 +69,6 @@ class Router
         }
 
         $this->abort(); // 404
-    }
-
-    public function previousURI(): string
-    {
-        return $_SERVER['HTTP_REFERER'] ?? '/';
     }
 
     protected function abort(int $code = 404): never

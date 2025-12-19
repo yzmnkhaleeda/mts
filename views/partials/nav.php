@@ -90,12 +90,15 @@
                                     >
                                     Settings
                                     </a>
-                                    <a
-                                    href="#"
-                                    class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5 focus:bg-white/5 focus:outline-hidden"
-                                    >
-                                    Sign out
-                                    </a>
+                                    <form method="POST" action="/sessions">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button
+                                        type="submit"
+                                        class="block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-white/5 focus:bg-white/5 focus:outline-hidden"
+                                        >
+                                        Sign out
+                                        </button>
+                                    </form>
                                 </div>
                                 </div>
                             </div>
@@ -140,7 +143,10 @@
                 <div class="mt-3 space-y-1 px-2">
                     <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Your Profile</a>
                     <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Settings</a>
-                    <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Sign out</a>
+                    <form method="POST" action="/sessions">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="block w-full text-left rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Sign out</button>
+                    </form>
                 </div>
             </div>
         </div>
