@@ -3,22 +3,21 @@
 use Core\Authenticator;
 use Http\Forms\LoginForm;
 
-
-$login = $_POST['login'] ?? '';
-$password = $_POST['password'] ?? '';
-
-$form = new LoginForm();
-
-if ($form->validate($login, $password)) {
-
-    if ((new Authenticator)->attempt($login, $password)) {
-
-        redirect('/dashboard');
-    }
-
-        $form->errors('login', 'Invalid login credentials.');
-    
-}
-    return view('sessions/create.view.php', [
-        'errors' => $form->errors()
+    $form =LoginForm::validate($attributes = [
+        'login' => $_POST['login'],
+        'password' => $_POST['password']
     ]);
+
+$signedIn = (new Authenticator())->attempt(
+    $attributes['login'], $attributes['password'], 3
+);
+
+if (! $signedIn) {
+  $form->error(
+    'login', 'Invalid login credentials.'
+    )->throw();  
+}
+
+
+
+redirect('/dashboard');
