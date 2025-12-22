@@ -54,24 +54,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors['pic_email'] = 'PIC email must be a valid email address';
     }
 
-    if (! Validator::string($_POST['brands_supplied'] ?? '', 1, 255)) {
-        $errors['brands_supplied'] = 'Brands supplied of no more than 255 characters is required';
+    if (! Validator::string($_POST['pic_position'] ?? '', 1, 100)) {
+        $errors['pic_position'] = 'PIC position of no more than 100 characters is required';
     }
 
-    if (! Validator::string($_POST['items_supplied'] ?? '', 1, 255)) {
-        $errors['items_supplied'] = 'Items supplied of no more than 255 characters is required';
+    if (! Validator::string($_POST['category'] ?? '', 1, 50)) {
+        $errors['category'] = 'Category is required';
+    }
+
+    if (! Validator::string($_POST['category_details'] ?? '', 1, 500)) {
+        $errors['category_details'] = 'Category details of no more than 500 characters is required';
     }
 
     if (! empty($errors)) {
-        return view('suppliers/create.view.php', [
-            'heading' => $heading,
+        return view('customers/create.view.php', [
+            'heading' => 'Register New Customer',
             'errors' => $errors,
         ]);
     }
 
     $db->query(
-        'INSERT INTO supplier (user_id, company_name, industry_type, company_address, company_city, company_state, company_postcode, company_phone, company_email, pic_name, pic_phone, pic_email, brands_supplied, items_supplied)
-         VALUES (:user_id, :company_name, :industry_type, :company_address, :company_city, :company_state, :company_postcode, :company_phone, :company_email, :pic_name, :pic_phone, :pic_email, :brands_supplied, :items_supplied)',
+        'INSERT INTO customer (user_id, company_name, industry_type, company_address, company_city, company_state, company_postcode, company_phone, company_email, pic_name, pic_phone, pic_email, pic_position, category, category_details)
+         VALUES (:user_id, :company_name, :industry_type, :company_address, :company_city, :company_state, :company_postcode, :company_phone, :company_email, :pic_name, :pic_phone, :pic_email, :pic_position, :category, :category_details)',
         [
             'user_id'          => $_SESSION['user']['user_id'],
             'company_name'     => $_POST['company_name'],
@@ -85,16 +89,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'pic_name'         => $_POST['pic_name'],
             'pic_phone'        => $_POST['pic_phone'],
             'pic_email'        => $_POST['pic_email'],
-            'brands_supplied'  => $_POST['brands_supplied'],
-            'items_supplied'   => $_POST['items_supplied'],
+            'pic_position'     => $_POST['pic_position'],
+            'category'         => $_POST['category'],
+            'category_details' => $_POST['category_details'],
         ]
     );
 
-    header('Location: /suppliers');
+    header('Location: /customers');
     exit();
 }
 
-view('suppliers/create.view.php', [
-    'heading' => $heading,
+view('customers/create.view.php', [
+    'heading' => 'Register New Customer',
     'errors' => $errors,
 ]);

@@ -16,13 +16,15 @@ if (! $supplier_id) {
 }
 
 $supplier = $db->query(
-    'SELECT * FROM supplier WHERE supplier_id = :id',
+    'SELECT s.*, u.full_name 
+     FROM supplier s 
+     LEFT JOIN users u ON s.user_id = u.user_id 
+     WHERE s.supplier_id = :id',
     ['id' => $supplier_id]
 )->findOrFail();
-
-authorize($supplier['user_id'] === $currentUserId);
 
 view('suppliers/show.view.php', [
     'heading' => $heading,
     'supplier' => $supplier,
+    'currentUserId' => $currentUserId,
 ]);
