@@ -6,7 +6,7 @@ use Core\Validator;
 
 $db = App::resolve(Database::class);
 
-$currentUserId = $_SESSION['user']['user_id'];
+$currentUserId = $_SESSION['user']['id'];
 
 $supplier = $db->query(
     'SELECT * FROM supplier WHERE supplier_id = :id',

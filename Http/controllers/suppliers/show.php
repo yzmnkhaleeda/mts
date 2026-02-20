@@ -7,7 +7,7 @@ $db = App::resolve(Database::class);
 
 $heading = 'Supplier';
 
-$currentUserId = $_SESSION['user']['user_id'];
+$currentUserId = $_SESSION['user']['id'];
 
 $supplier_id = $_GET['supplier_id'] ?? null;
 
