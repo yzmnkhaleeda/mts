@@ -28,6 +28,17 @@ $router->patch('/customers/edit', 'customers/update.php')->only('auth');
 $router->get('/customers/create', 'customers/create.php')->only('auth');
 $router->post('/customers/create', 'customers/store.php')->only('auth');
 
+$router->get('/quotations', 'quotations/index.php')->only('auth');
+
+$router->get('/quotation', 'quotations/show.php')->only('auth');
+$router->delete('/quotation', 'quotations/destroy.php')->only('auth');
+
+$router->get('/quotation/edit', 'quotations/edit.php')->only('auth');
+$router->patch('/quotation/edit', 'quotations/update.php')->only('auth');
+
+$router->get('/quotations/create', 'quotations/create.php')->only('auth');
+$router->post('/quotations/create', 'quotations/store.php')->only('auth');
+
 $router->get('/admin/users', 'admin/users/index.php')->only('admin');
 
 $router->get('/admin/users/show', 'admin/users/show.php')->only('admin');
