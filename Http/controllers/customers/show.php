@@ -7,7 +7,7 @@ $db = App::resolve(Database::class);
 
 $heading = 'Customer';
 
-$currentUserId = 2;
+$currentUserId = $_SESSION['user']['user_id'];
 
 $customer_id = $_GET['customer_id'] ?? null;
 

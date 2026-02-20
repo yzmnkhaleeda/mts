@@ -5,7 +5,7 @@ use Core\Database;
 
 $db = App::resolve(Database::class);
 
-$currentUserId = 1;
+$currentUserId = $_SESSION['user']['user_id'];
 
 $supplier_id = $_POST['supplier_id'] ?? null;
 

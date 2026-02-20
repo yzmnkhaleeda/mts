@@ -7,7 +7,7 @@ $db = App::resolve(Database::class);
 
 $heading = 'Edit Supplier';
 
-$currentUserId = 2;
+$currentUserId = $_SESSION['user']['user_id'];
 
 $supplier_id = $_GET['supplier_id'] ?? null;
 
