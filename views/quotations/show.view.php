@@ -5,11 +5,10 @@
 <main>
     <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-2xl">
-            <!-- Back Button -->
             <div class="mb-6">
-                <a href="/quotations" class="text-indigo-600 hover:text-indigo-700 font-medium flex items-center">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                <a href="/quotations" class="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                     </svg>
                     Back to Quotations
                 </a>

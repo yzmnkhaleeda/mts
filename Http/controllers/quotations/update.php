@@ -16,8 +16,8 @@ if (! $quotation_id) {
 }
 
 $quotation = $db->query(
-    'SELECT * FROM quotation WHERE quotation_id = :id AND user_id = :user_id',
-    ['id' => $quotation_id, 'user_id' => $currentUserId]
+    'SELECT * FROM quotation WHERE quotation_id = :id',
+    ['id' => $quotation_id]
 )->find();
 
 if (! $quotation) {
@@ -40,12 +40,11 @@ if (! empty($errors)) {
 }
 
 $db->query(
-    'UPDATE quotation SET title = :title, notes = :notes WHERE quotation_id = :id AND user_id = :user_id',
+    'UPDATE quotation SET title = :title, notes = :notes WHERE quotation_id = :id',
     [
         'title' => $_POST['title'],
         'notes' => $_POST['notes'],
         'id' => $quotation_id,
-        'user_id' => $currentUserId,
     ]
 );
 

@@ -10,8 +10,7 @@ $heading = 'Quotations';
 $currentUserId = $_SESSION['user']['id'];
 
 $quotations = $db->query(
-    'SELECT * FROM quotation WHERE user_id = :user_id',
-    ['user_id' => $currentUserId]
+    'SELECT * FROM quotation'
 )->fetchAll();
 
 view('quotations/index.view.php', [
